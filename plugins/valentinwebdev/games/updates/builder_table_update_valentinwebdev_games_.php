@@ -1,0 +1,37 @@
+<?php namespace Valentinwebdev\Games\Updates;
+
+use Schema;
+use October\Rain\Database\Updates\Migration;
+
+class BuilderTableUpdateValentinwebdevGames extends Migration
+{
+    public function up()
+    {
+        Schema::table('valentinwebdev_games_', function($table)
+        {
+            $table->string('image', 255);
+            $table->string('title', 191);
+            $table->text('params');
+            $table->string('game_link', 191);
+            $table->string('game_link_title', 191);
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
+        });
+    }
+    
+    public function down()
+    {
+        Schema::table('valentinwebdev_games_', function($table)
+        {
+            $table->dropColumn('image');
+            $table->dropColumn('title');
+            $table->dropColumn('params');
+            $table->dropColumn('game_link');
+            $table->dropColumn('game_link_title');
+            $table->dropColumn('created_at');
+            $table->dropColumn('updated_at');
+            $table->dropColumn('deleted_at');
+        });
+    }
+}

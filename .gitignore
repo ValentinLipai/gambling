@@ -1,0 +1,12 @@
+.DS_Store
+*.log
+.idea
+bootstrap
+storage
+vendor
+modules
+themes/demo
+themes/gambling/node_modules
+plugins/*
+!plugins/valentinwebdev
+

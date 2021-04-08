@@ -1,0 +1,13 @@
+<div class="stars {{customClass}}">
+    {% for i in 1..5 %}
+        {% if i <= rating %}
+            <i class="icon-star"></i>
+        {% else %}
+            {% if (i - rating) <= 0.5 %}
+                <i class="icon-star-half"></i>
+            {% else %}
+                <i class="icon-star-empty"></i>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</div>

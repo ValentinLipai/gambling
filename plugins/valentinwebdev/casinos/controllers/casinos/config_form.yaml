@@ -1,0 +1,10 @@
+name: Casinos
+form: $/valentinwebdev/casinos/models/casinos/fields.yaml
+modelClass: Valentinwebdev\Casinos\Models\Casinos
+defaultRedirect: valentinwebdev/casinos/casinos
+create:
+    redirect: 'valentinwebdev/casinos/casinos/update/:id'
+    redirectClose: valentinwebdev/casinos/casinos
+update:
+    redirect: valentinwebdev/casinos/casinos
+    redirectClose: valentinwebdev/casinos/casinos

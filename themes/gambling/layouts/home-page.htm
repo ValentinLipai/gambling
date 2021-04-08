@@ -1,0 +1,144 @@
+[staticPage homePage]
+useContent = 1
+default = 0
+
+[builderList hpTopCasinos]
+modelClass = "Valentinwebdev\Casinos\Models\Casinos"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "slug"
+noRecordsMessage = "No casinos found"
+detailsPage = "casinos/casinosDetail"
+detailsKeyColumn = "slug"
+detailsUrlParameter = ":slug"
+recordsPerPage = 4
+pageNumber = "{{ :page }}"
+sortColumn = "rating"
+sortDirection = "desc"
+
+[builderList hpGamesList]
+modelClass = "Valentinwebdev\Games\Models\Games"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "slug"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+recordsPerPage = 5
+pageNumber = "{{ :page }}"
+sortColumn = "title"
+sortDirection = "asc"
+
+[builderList hpBonusesList]
+modelClass = "Valentinwebdev\Bonuses\Models\Bonuses"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No bonuses found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+
+[builderList faqHpList]
+modelClass = "Valentinwebdev\Customplugins\Models\Faq"
+scope = "-"
+scopeValue = 1
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+
+[newsPosts newsPostsPaged]
+pageNumber = "{{ :page }}"
+postsPerPage = 5
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+postFeatured = 0
+postPage = "news/post"
+categoryPage = 404
+==
+{% partial 'site/head' %}
+
+<body>
+
+    {% partial 'site/header' %}
+
+    <main class="main">
+        <div class="page-wrapper">
+            <!-- Top Casinos -->
+
+            <div class="content-box">
+                <div class="content-box__title">
+                    <h2>{text label="Block Title" name="block1_title" tab="Block 1"}{/text}</h2>
+                </div>
+                <div class="content-box__content">
+                    {% partial 'casinosCards/casinosCards' data=hpTopCasinos %}
+                </div>
+            </div>
+            
+            <div class="content-box">
+                <div class="content-box__title">
+                    <h2>{text label="Block Title" name="block2_title" tab="Block 2"}{/text}</h2>
+                </div>
+                <div class="content-box__content">
+                    {% partial 'gamesCards/gamesCards' data=hpGamesList isSlider=true %}
+                </div>
+            </div>
+
+            {variable type="mediafinder" mode="image" span="right" label="Background Image" name="block3_bg" tab="Block 3"}{/variable}
+            <div class="content-box _bonusCodes _wide _bg" style="background-image: url({{block3_bg|media}})">
+                <div class="content-box__title">
+                    <h2>{text label="Block Title" span="left" name="block3_title" tab="Block 3"}{/text}</h2>
+                </div>
+                <div class="content-box__content">
+                    {% partial 'bonusCodes/bonusCodes' data=hpBonusesList isSlider=true %}
+                </div>
+            </div>
+
+            <div class="content-box">
+                <div class="content-box__title">
+                    <h2>{text label="Block Title" name="block4_title" tab="Block 4"}{/text}</h2>
+                </div>
+                <div class="content-box__content">
+                    {% partial 'recent-posts/recentPostsTabs' hideExcerpt=true %}
+                </div>
+            </div>
+            
+            <div class="content-box">
+                <div class="content-box__content">
+                    <div class="text-content">
+                        {richeditor label="Block Content" name="block5_content" tab="Block 5"}{/richeditor}
+                    </div>
+                </div>
+            </div>
+
+            {variable type="mediafinder" mode="image" span="auto" label="Background Image" name="block6_bg" tab="Block 6"}{/variable}
+            <div class="content-box _wide _bg content-box--hp-text-2" style="background-image: url({{block6_bg|media}})">
+                <div class="content-box__content">
+                    <div class="text-content">
+                        {richeditor label="Block Content" name="block6_content" tab="Block 6"}{/richeditor}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-box">
+                <div class="content-box__title">
+                    <h2>{text label="Block Title" name="block7_title" tab="Block 7"}{/text}</h2>
+                </div>
+                <div class="content-box__content">
+                    {% partial 'faq' items=faqHpList.records id=1 %}
+                </div>
+            </div>
+            
+            <div class="content-box">
+                <div class="content-box__content">
+                    {% page %}
+                </div>
+            </div>
+            
+        </div>
+    </main>
+    
+{% partial 'site/footer' %}

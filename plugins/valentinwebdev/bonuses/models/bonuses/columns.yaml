@@ -1,0 +1,10 @@
+columns:
+    id:
+        label: '#'
+        type: number
+    title:
+        label: title
+        type: text
+    bonus_code:
+        label: bonus_code
+        type: text

@@ -1,0 +1,116 @@
+fields:
+    site_name:
+        type: text
+        label: Site name
+        span: auto
+
+tabs:
+    stretch: true
+    defaultTab: User
+    cssClass: text-blue
+    lazy:
+        - Groups
+    paneCssClass:
+        0: first-tab
+        1: second-tab
+
+    fields:
+# SETTINGS TAB
+        all_tab_title:
+            type: text
+            label: All tab title
+            tab: Settings
+            span: auto
+        prev_btn_text:
+            type: text
+            label: Prev Text
+            tab: Settings
+            span: auto
+        next_btn_text:
+            type: text
+            label: Next Text
+            tab: Settings
+            span: auto
+        no_items_text:
+            type: text
+            label: No items text
+            tab: Settings
+            span: auto
+# SEARCH TAB
+        search_for_text:
+            type: text
+            label: Search result text
+            tab: Search
+            span: auto
+# BONUSES TAB
+        bonus_content_1:
+            type: richeditor
+            label: Content Before FAQ
+            tab: Bonuses
+            span: auto
+        bonus_content_2:
+            type: richeditor
+            label: Content After FAQ
+            tab: Bonuses
+            span: auto
+        bonus_bg:
+            type: mediafinder
+            mode: image
+            label: category BG image
+            tab: Bonuses
+            span: auto
+        bonus_faq_title:
+            type: text
+            label: FAQ Title
+            tab: Bonuses
+# BONUSES CARD TAB
+        bonus_card_title:
+            type: text
+            label: Card Title
+            tab: Bonuse Card
+            span: auto
+        bonus_card_valid_text:
+            type: text
+            label: Card Title
+            tab: Bonuse Card
+            span: auto
+# CASINOS TAB
+        casinos_content_1:
+            type: richeditor
+            label: Content Before FAQ
+            tab: Casinos
+            span: auto
+        casinos_content_2:
+            type: richeditor
+            label: Content After FAQ
+            tab: Casinos
+            span: auto
+        casinos_bg:
+            type: mediafinder
+            mode: image
+            label: category BG image
+            tab: Casinos
+            span: auto
+        casinos_faq_title:
+            type: text
+            label: FAQ Title
+            tab: Casinos
+            span: auto
+# CASINOS CARD TAB
+        casino_card_bonus_title:
+            type: text
+            label: Card Bonus Title
+            tab: Casino Card
+            span: auto
+# GAMES TAB
+        games_content_1:
+            type: richeditor
+            label: Content
+            tab: Games
+            span: auto
+        games_bg:
+            type: mediafinder
+            mode: image
+            label: category BG image
+            tab: Games
+            span: auto

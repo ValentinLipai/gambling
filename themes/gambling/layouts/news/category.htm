@@ -1,0 +1,42 @@
+[newsPosts newsPostsPaged]
+pageNumber = "{{ :page }}"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+postFeatured = 0
+categoryFilter = "{{ :slug }}"
+postPage = "news/post"
+categoryPage = 404
+==
+{% partial 'site/head' %}
+
+    <body>
+    
+    {% partial 'site/header' %}
+    
+    <main class="main">
+
+        {% partial 'site/top-search' %}
+        
+        <div class="page-wrapper">
+
+            <div class="content-box">
+                <div class="content-box__content">
+                    {% component "newsPostsPaged" %}
+                </div>
+            </div>
+            
+            <div class="content-box">
+                <div class="content-box__content">
+                    <div class="text-content">
+                        {% page %}
+                    </div>
+                </div>
+            </div>
+            
+            {% partial 'infoPagesWidgets' %}
+        
+        </div>
+    </main>
+    
+{% partial 'site/footer' %}

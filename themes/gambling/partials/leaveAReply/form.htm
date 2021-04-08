@@ -1,0 +1,35 @@
+<div class="leave-a-reply" id="comment-form">
+    <form>
+        <div id="comment_flash_message"></div>
+        {% if(user == false) %}
+        <!-- Name Field -->
+        <div class="form-group">
+            <input placeholder="Name" class="form__input" name="author" type="text">
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+            <input placeholder="Email" class="form__input" name="email" type="text">
+        </div>
+        {% endif %}
+        <!-- Content Field -->
+        <div class="form-group">
+            <textarea placeholder="Leave a comment ..." class="form__textarea" id="comment-text" name="content"
+                      cols="50" rows="10"></textarea>
+        </div>
+
+        <input name="post_id" type="hidden" value="{{__SELF__.post_id}}">
+        <input name="page_title" type="hidden" value="{{this.page.title}}">
+
+        {% if (__SELF__.settings.recaptcha_enabled) %}
+        <div class="g-recaptcha" data-sitekey="{{ __SELF__.settings.site_key }}"></div>
+        <br>
+        {% endif %}
+
+        <!-- Submit Field -->
+        <div class="form-group">
+            <button type="submit" class="leave-a-reply__submit btn btn-primary" onclick="Comment.saveButton(event)">Send</button>
+        </div>
+    </form>
+</div>
+

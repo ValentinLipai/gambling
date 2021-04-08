@@ -1,0 +1,10 @@
+name: Bonuses
+form: $/valentinwebdev/bonuses/models/bonuses/fields.yaml
+modelClass: Valentinwebdev\Bonuses\Models\Bonuses
+defaultRedirect: valentinwebdev/bonuses/bonuses
+create:
+    redirect: 'valentinwebdev/bonuses/bonuses/update/:id'
+    redirectClose: valentinwebdev/bonuses/bonuses
+update:
+    redirect: valentinwebdev/bonuses/bonuses
+    redirectClose: valentinwebdev/bonuses/bonuses

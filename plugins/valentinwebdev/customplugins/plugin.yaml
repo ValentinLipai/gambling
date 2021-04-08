@@ -1,0 +1,20 @@
+plugin:
+    name: 'valentinwebdev.customplugins::lang.plugin.name'
+    description: 'valentinwebdev.customplugins::lang.plugin.description'
+    author: ValentinWebDev
+    icon: oc-icon-plug
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Custom
+        url: valentinwebdev/customplugins/faq
+        icon: icon-plug
+        sideMenu:
+            side-menu-item1:
+                label: FAQ
+                url: valentinwebdev/customplugins/faq
+                icon: icon-question
+            side-menu-item2:
+                label: Social
+                url: valentinwebdev/customplugins/social
+                icon: icon-sitemap

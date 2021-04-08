@@ -1,0 +1,23 @@
+fields:
+    title:
+        label: Title
+        span: auto
+        required: 1
+        type: text
+    link:
+        label: Link
+        span: auto
+        placeholder: 'https://google.com'
+        required: 1
+        type: text
+    icon_class:
+        label: Social
+        options:
+            twitter: Twitter
+            instagram: Instagram
+            in: Linkedin
+            facebook: Facebook
+        showSearch: 0
+        span: auto
+        required: 1
+        type: dropdown

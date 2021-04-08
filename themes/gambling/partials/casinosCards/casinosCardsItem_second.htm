@@ -1,0 +1,22 @@
+[viewBag]
+==
+<!-- bonus-cards-item start -->
+<div class="casinosCardsItem_second">
+    <div class="casinosCardsItem_second__content">
+        <div class="casinosCardsItem_second__logo">
+            <img src="{{ card.image|media }}" alt="">
+        </div>
+        <div class="casinosCardsItem_second__meta">
+            <div class="casinosCardsItem_second__title">{{card.title}}</div>
+            {% partial 'ratingStars' customClass="bonus-cards-item__rating" rating=card.rating %}
+        </div>
+        <div class="casinosCardsItem_second__info">
+            {{card.detail_bonus|raw}}
+        </div>
+    </div>
+    <div class="casinosCardsItem_second__actions">
+        <a href="{{ url }}" class="link-arrow btn btn-secondary">{{ card.more_link_title }}</a>
+        <a href="{{ card.game_link }}" target="_blank" class="btn btn-primary">{{ card.game_link_title }}</a>
+    </div>
+</div>
+<!-- bonus-cards-item end -->

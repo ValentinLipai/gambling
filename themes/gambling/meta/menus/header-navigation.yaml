@@ -1,0 +1,131 @@
+items:
+    -
+        title: 'Home page'
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: index
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Casinos
+        nesting: null
+        type: cms-page
+        url: null
+        code: ''
+        reference: casinos/casinosCategory
+        cmsPage: null
+        replace: null
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Bonuses
+        nesting: null
+        type: cms-page
+        url: null
+        code: ''
+        reference: bonuses/bonusesCategory
+        cmsPage: null
+        replace: null
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Games
+        nesting: null
+        type: cms-page
+        url: null
+        code: ''
+        reference: games/gamesCategory
+        cmsPage: null
+        replace: null
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Information
+        nesting: null
+        type: url
+        url: '#'
+        code: ''
+        reference: null
+        cmsPage: null
+        replace: null
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+        items:
+            -
+                title: 'No Deposit Bonuses'
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: information-no-deposit-bonuses
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Deposit Bonuses'
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: information-deposit-bonuses
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'First Deposit Bonuses'
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: information-first-deposit-bonuses
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Reload bonuses'
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: information-reload-bonuses
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+    -
+        title: 'Gambling News'
+        nesting: 0
+        type: static-page
+        code: ''
+        reference: news
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+name: 'Header navigation'

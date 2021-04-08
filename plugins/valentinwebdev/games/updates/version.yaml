@@ -1,0 +1,41 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table valentinwebdev_games_'
+    - builder_table_create_valentinwebdev_games_.php
+1.0.3:
+    - 'Updated table valentinwebdev_games_'
+    - builder_table_update_valentinwebdev_games_.php
+1.0.4:
+    - 'Updated table valentinwebdev_games_items'
+    - builder_table_update_valentinwebdev_games_items.php
+1.0.5:
+    - 'Updated table valentinwebdev_games_items'
+    - builder_table_update_valentinwebdev_games_items_2.php
+1.0.6:
+    - 'Updated table valentinwebdev_games_items'
+    - builder_table_update_valentinwebdev_games_items_3.php
+1.0.7:
+    - 'Updated table valentinwebdev_games_items'
+    - builder_table_update_valentinwebdev_games_items_4.php
+1.0.8:
+    - 'Updated table valentinwebdev_games_items'
+    - builder_table_update_valentinwebdev_games_items_5.php
+1.0.9:
+    - 'Updated table valentinwebdev_games_items'
+    - builder_table_update_valentinwebdev_games_items_6.php
+1.0.10:
+    - 'Updated table valentinwebdev_games_items'
+    - builder_table_update_valentinwebdev_games_items_7.php
+1.0.11:
+    - 'Updated table valentinwebdev_games_items'
+    - builder_table_update_valentinwebdev_games_items_8.php
+1.0.12:
+    - 'Updated table valentinwebdev_games_items'
+    - builder_table_update_valentinwebdev_games_items_9.php
+1.0.13:
+    - 'Created table valentinwebdev_games_categories'
+    - builder_table_create_valentinwebdev_games_categories.php
+1.0.14:
+    - 'Created table valentinwebdev_games_items_categories'
+    - builder_table_create_valentinwebdev_games_items_categories.php

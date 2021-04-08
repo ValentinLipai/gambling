@@ -1,0 +1,10 @@
+name: Categories
+form: $/valentinwebdev/casinos/models/categories/fields.yaml
+modelClass: Valentinwebdev\Casinos\Models\Categories
+defaultRedirect: valentinwebdev/casinos/categories
+create:
+    redirect: 'valentinwebdev/casinos/categories/update/:id'
+    redirectClose: valentinwebdev/casinos/categories
+update:
+    redirect: valentinwebdev/casinos/categories
+    redirectClose: valentinwebdev/casinos/categories

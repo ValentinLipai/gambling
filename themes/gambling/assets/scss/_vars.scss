@@ -1,0 +1,35 @@
+$gilroy-font: "Gilroy", sans-serif;
+$oswald-font: "Oswald", sans-serif;
+
+$white : #ffffff;
+$purple: #C028C9;
+$purple-dark: #A51DAC;
+$blue: #686FF1;
+$orange: #FFC256;
+$orange2: #FFF5DB;
+$dark-red: #d50019;
+$black: #111111;
+$black-light: #1C1C1C;
+$black-light2: #161616;
+$gray: #9F9F9F;
+$gray2: #4A4A4A;
+$gray3: #383838;
+$gray4: #686868;
+$gray5: #BCBCBC;
+$text: $white;
+
+$accent: $orange;
+$main-clr: $black;
+
+$gradient1: linear-gradient(180deg, $blue 0%, $purple 100%);
+$gradient2: linear-gradient(90deg, $blue 0%, $purple 100%);
+$gradient3: linear-gradient(180deg, $blue 0%, $purple-dark 100%);;
+$gradient-gold: linear-gradient(180deg, #B1952F 5.1%, #F9E9B2 53.54%, #876F18 100%);
+$gradient-gold2: linear-gradient(270deg, #B1952F 0%, #F9E9B2 51.04%, #876F18 100%);
+
+
+$default-font: $gilroy-font;
+$html_fz_mobile: vwcalc(10, 360);
+$html_fz_tablet: vwcalc(10, 767);
+$html_fz_desktop: vwcalc(10);
+

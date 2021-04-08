@@ -1,0 +1,48 @@
+[newsPosts recentNewsPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 4
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+postFeatured = 0
+postPage = "news/post"
+categoryPage = 404
+
+[viewBag]
+==
+<?php
+function onEnd()
+{
+    $cats = Db::select("select * from indikator_news_categories");
+
+    $catsArr = [];
+
+    foreach ($cats as $cat) {
+        $catsArr[$cat->id] = $cat;
+    }
+
+    $this["newsCategories"] = $catsArr;
+}
+?>
+==
+{% set posts = recentNewsPosts.posts %}
+
+<div class="recent-news">
+    <ul class="recent-news__list">
+        {% for post in posts %}
+            <li class="recent-news-item">
+                <div class="recent-news-item__image">
+                    <img src="{{post.image|media}}" alt="">
+                </div>
+                <div class="recent-news-item__content">
+                    <h3 class="recent-news-item__title"><a href="/{{ newsCategories[post.category_id].slug }}/{{ post.slug }}">{{ post.title }}</a></h3>
+                    <div class="recent-news__posted">
+                        <i class="icon-clock"></i>
+                        {{post.published_at.diffForHumans}}
+                    </div>
+                </div>
+            </li>
+        {% else %}
+            <li class="no-data">{{ recentPostsList.noPostsMessage }}</li>
+        {% endfor %}
+    </ul>
+</div>

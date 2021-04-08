@@ -1,0 +1,24 @@
+fields:
+    title:
+        label: Title
+        span: full
+        required: 1
+        type: text
+    content:
+        label: Items
+        prompt: 'Add new item'
+        span: full
+        type: repeater
+        form:
+            fields:
+                item_title:
+                    label: Title
+                    span: full
+                    required: 1
+                    type: text
+                item_text:
+                    label: 'Rich editor'
+                    size: ''
+                    span: full
+                    required: 1
+                    type: richeditor

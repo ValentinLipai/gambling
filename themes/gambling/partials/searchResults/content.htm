@@ -1,0 +1,36 @@
+==
+<?php
+    function onEnd() {
+        if ($this->result->identifier === "Indikator.News") {
+            $pageSlug = $this->result->model->slug;
+            $catInfo = DB::table('indikator_news_categories')->where("id", $this->result->model->category_id)->get()[0];
+            $url = $catInfo->slug . '/' . $pageSlug;
+            $this->result->url = $url;
+        }
+
+    }
+?>
+==
+<h4 class="search-result-item__title">
+    <a href="{{ result.url | app }}">{{ result.title | raw }}</a>
+    {% if __SELF__.showProviderBadge %}
+        <span class="search-result-item__badge">
+            {{ result.provider }}
+        </span>
+    {% endif %}
+
+    {# Some results contain meta information.     #}
+    {# You can access it using result.meta.       #}
+    {# To find out from which plugin the result   #}
+    {# was returned you can use result.identifier #}
+    {# Some results contain the original model.   #}
+    {# You can access it using result.model       #}
+</h4>
+
+<p class="search-result-item__text">
+    {{ result.excerpt | raw }}
+</p>
+
+<p class="search-result-item__url">
+    <a href="{{ result.url | app }}" class="btn btn-secondary">{{ __SELF__.visitPageMessage }} &rarr;</a>
+</p>

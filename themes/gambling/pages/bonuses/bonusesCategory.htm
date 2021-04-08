@@ -1,0 +1,185 @@
+title = "Bonuses Casino And Welcome Packages"
+url = "/bonuses/:page?"
+layout = "main/main-category"
+is_hidden = 0
+
+[builderList bonusesListFull]
+modelClass = "Valentinwebdev\Bonuses\Models\Bonuses"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+
+[builderList bonusesList]
+modelClass = "Valentinwebdev\Bonuses\Models\Bonuses"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+recordsPerPage = 6
+pageNumber = "{{ :page }}"
+
+[builderList bonusesCategories]
+modelClass = "Valentinwebdev\Bonuses\Models\Categories"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "cat_title"
+noRecordsMessage = "No records found"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+sortColumn = "cat_title"
+sortDirection = "asc"
+
+[builderList bonusesCatFaq]
+modelClass = "Valentinwebdev\Customplugins\Models\Faq"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+
+[commentsPost]
+
+[SiteSettings]
+==
+
+<style>
+    .content-box._customCategory {
+        background-image: url({{ SiteSettings.get('bonus_bg') | media }});
+        background-position: top center;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<div class="content-box _wide-category _bonusCodes _customCategory">
+    <div class="content-box__title">
+        <h2>{{this.page.title}}</h2>
+    </div>
+    <div class="content-box__content">
+        <div class="tabs">
+            <div class="tabs__header">
+                <div class="swiper-container">
+                    <ul class="swiper-wrapper tabs-nav__list">
+                        {% set bonusesCatsList = bonusesCategories.records %}
+
+                        <li class="swiper-slide tabs-nav__link _active">{{ SiteSettings.get('all_tab_title') }}</li>
+
+                        {% set catIds = [] %}
+                        {% for category in bonusesCatsList %}
+                            {% set catIds = catIds|merge([category.id]) %}
+                            <li class="swiper-slide tabs-nav__link">{{category.cat_title}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="tabs-content__list">
+                <div class="tabs-content__item _active">
+                    {% set bonusesItems = bonusesList.records %}
+                    {% set displayColumn = bonusesList.displayColumn %}
+                    {% set casinosNoRecordsMessage = bonusesList.noRecordsMessage %}
+                    {% partial 'bonusCodes/bonusCodes' data=bonusesList %}
+
+                    {% if bonusesItems.lastPage > 1 %}
+                    <div class="pagination">
+                        <div class="pagination-btn pagination-btn--prev">
+                            {% if bonusesItems.currentPage > 1 %}
+                                <a href="{{ this.page.baseFileName|page({ (pageParam): (bonusesItems.currentPage-1) }) }}"><i class="icon-chevron-left"></i> {{ SiteSettings.get('prev_btn_text') }}</a>
+                            {% endif %}
+                        </div>
+                        <div class="pagination__pages">
+                            {% if bonusesItems.currentPage == 1 %}
+                                {% set pageFrom = 1 %}
+                                {% if bonusesItems.lastPage >= 3 %}
+                                    {% set pageTo = 3 %}
+                                {% else %}
+                                    {% set pageTo = bonusesItems.lastPage %}
+                                {% endif %}
+                            {% elseif bonusesItems.currentPage == bonusesItems.lastPage %}
+                                {% if bonusesItems.currentPage > 2 %}
+                                    {% set pageFrom = (bonusesItems.currentPage-2) %}
+                                {% else %}
+                                    {% set pageFrom = (bonusesItems.currentPage-1) %}
+                                {% endif %}
+
+                                {% set pageTo = bonusesItems.currentPage %}
+                            {% else %}
+                                {% set pageFrom = (bonusesItems.currentPage-1) %}
+                                {% set pageTo = (bonusesItems.currentPage+1) %}
+                            {% endif %}
+
+                            {% for page in pageFrom..pageTo %}
+                                <li class="pagination-item {{ bonusesItems.currentPage == page ? '_active' : null }}">
+                                    {% if bonusesItems.currentPage == page %}
+                                        <span>{{ page }}</span>
+                                    {% else %}
+                                        <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </div>
+                        <div class="pagination-btn pagination-btn--next">
+                            {% if bonusesItems.lastPage > bonusesItems.currentPage %}
+                                <a href="{{ this.page.baseFileName|page({ (pageParam): (bonusesItems.currentPage+1) }) }}">{{ SiteSettings.get('next_btn_text') }} <i class="icon-chevron-right"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% set bonusesListFullItems = bonusesListFull.records %}
+
+                {% for catItem in catIds %}
+                    <div class="tabs-content__item">
+                        {% set counter = 0 %}
+                        {% set collection = [] %}
+
+                        {% for item in bonusesListFullItems %}
+                            {% if item.category_id == catItem %}
+                                {% set collection = collection|merge([item]) %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if counter|length > 0.5 %}
+                            {% set collectionsItems = {
+                                'records': collection
+                            } %}
+                            {% partial 'bonusCodes/bonusCodes' data=collectionsItems %}
+                        {% else %}
+                            <div>{{ SiteSettings.get('no_items_text') }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-box">
+    <div class="content-box__content">
+        <div class="text-content">
+            {{ SiteSettings.get('bonus_content_1') | raw }}
+        </div>
+    </div>
+</div>
+
+<div class="content-box">
+    <div class="content-box__title">
+        <h2>{{ SiteSettings.get('bonus_faq_title') }}</h2>
+    </div>
+    <div class="content-box__content">
+        {% partial 'faq' items=bonusesCatFaq.records id=3 %}
+    </div>
+</div>
+
+<div class="content-box">
+    <div class="content-box__content">
+        <div class="text-content">
+            {{ SiteSettings.get('bonus_content_2') | raw }}
+        </div>
+    </div>
+</div>

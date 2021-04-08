@@ -1,0 +1,204 @@
+%full-card {
+    padding: rem(16);
+    .posts-cards-item__content {
+        padding-top: rem(60);
+        min-height: rem(176);
+    }
+    .posts-cards-item__image {
+        display: block;
+    }
+    .posts-cards-item__meta {
+        justify-content: space-between;
+    }
+    .posts-cards-item__tags {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+}
+
+
+.posts-cards-item {
+    position: relative;
+    margin-bottom: rem(36);
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: rem(-18);
+        left: 0;
+        width: 100%;
+        height: 1px;
+        display: inline-block;
+        background: $gradient1;
+    }
+    &:nth-of-type(1),
+    &:nth-last-of-type(1),
+    &:nth-last-of-type(2) {
+        &:after {
+            display: none;
+        }
+    }
+    &:nth-of-type(1),
+    &:nth-last-of-type(2) {
+        margin-bottom: rem(18);
+    }
+    &:last-of-type {
+        margin-bottom: 0 !important;
+    }
+    .cat-posts-cards--first-and-last & {
+        &:first-of-type,
+        &:last-of-type {
+            @extend %full-card;
+        }
+    }
+    .cat-posts-cards--layout2 & {
+        @extend %full-card;
+    }
+    .cat-posts-cards--layout2 & {
+        &:not(:last-of-type) {
+            margin-bottom: rem(20);
+        }
+        &:after {
+            display: none;
+        }
+    }
+}
+
+.posts-cards-item__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    display: none;
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(179.81deg, rgba(23, 23, 23, 0) 0.16%, rgba(23, 23, 23, 0.76) 52.57%, rgba(23, 23, 23, 0.96) 81.32%);
+    }
+    img {
+        @include imgBg();
+    }
+}
+
+.posts-cards-item__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.posts-cards-item__bottom {
+    margin-top: auto;
+}
+
+.posts-cards-item__title {
+    font-weight: 800;
+    font-size: rem(16);
+    line-height: (20/16);
+    color: $white;
+    a {
+        font-size: inherit;
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+.posts-cards-item__introductory {
+    font-weight: 300;
+    font-size: rem(12);
+    line-height: 1.5;
+    color: $white;
+    margin-top: rem(6);
+    max-height: rem(54);
+    overflow: hidden;
+    p {
+        margin-bottom: 0;
+        + p {
+            margin-top: rem(8);
+        }
+    }
+}
+
+.posts-cards-item__more {
+    margin-top: rem(10);
+    .cat-posts-cards__list:not(.cat-posts-cards__list--layout2) & {
+        display: none;
+    }
+    + .posts-cards-item__meta {
+        margin-top: rem(20);
+    }
+}
+
+.posts-cards-item__meta {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: rem(10);
+}
+
+.posts-cards-item__posted {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 300;
+    font-size: rem(10);
+    line-height: 1.2;
+    color: $white;
+    margin-right: rem(10);
+    i {
+        font-size: rem(10);
+        color: inherit;
+        margin-right: rem(6);
+    }
+}
+
+.posts-cards-item__params {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: 300;
+    font-size: rem(10);
+    line-height: 1.2;
+    > * {
+        display: flex;
+        align-items: center;
+    }
+    i {
+        font-size: rem(12);
+        color: inherit;
+        margin-right: rem(6);
+    }
+}
+
+.posts-cards-item__comments {
+    margin-right: rem(10);
+}
+
+.posts-cards-item__tags {
+    display: none;
+    span {
+        padding: rem(5 10);
+        border-radius: rem(50);
+        font-weight: 800;
+        font-size: rem(11);
+        line-height: 1;
+        letter-spacing: 0.0181818182em;
+        background: $gradient1;
+        &:not(:last-of-type) {
+            margin-right: rem(8);
+        }
+    }
+}

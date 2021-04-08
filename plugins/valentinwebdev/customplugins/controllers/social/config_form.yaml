@@ -1,0 +1,10 @@
+name: Social
+form: $/valentinwebdev/customplugins/models/social/fields.yaml
+modelClass: Valentinwebdev\Customplugins\Models\Social
+defaultRedirect: valentinwebdev/customplugins/social
+create:
+    redirect: 'valentinwebdev/customplugins/social/update/:id'
+    redirectClose: valentinwebdev/customplugins/social
+update:
+    redirect: valentinwebdev/customplugins/social
+    redirectClose: valentinwebdev/customplugins/social

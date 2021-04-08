@@ -1,0 +1,19 @@
+==
+<?php
+function onStart()
+{
+    $this['recentComments'] = Db::select('select * from saurabhdhariwal_comments_posts where status = 1', [1]);
+}
+?>
+==
+
+<div class="recent-comments">
+    <ul class="recent-comments__list">
+        {% for comment in recentComments %}
+        <li class="recent-comments-item">
+            <span class="recent-comments-item__author">{{comment.author}}</span> on
+            <a href="/{{comment.url}}" class="recent-comments-item__page">{{comment.page_title}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,42 @@
+title = "Casino Detail Page"
+url = "/casino/:slug"
+layout = "main/main-detail"
+is_hidden = 0
+
+[commentsPost leaveAReply]
+
+[builderDetails]
+modelClass = "Valentinwebdev\Casinos\Models\Casinos"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "title"
+notFoundMessage = "Record not found"
+==
+<?php
+    function onEnd()
+    {
+        if (!$this->record) {
+            return $this->controller->run('404');
+        }
+        $this->page->title = $this->record->title;
+        $this->page->meta_title = $this->record->meta_title;
+        $this->page->meta_description = $this->record->meta_description;
+    }
+?>
+==
+{% set record = builderDetails.record %}
+
+<div class="content-box">
+    <div class="content-box__title">
+        <h1>
+            {{ record.title }}
+        </h1>
+    </div>
+    <div class="content-box__content">
+        {{ record.content | raw }}
+    </div>
+</div>
+
+{% component 'leaveAReply' %}
+
+{% partial 'infoPagesWidgets' %}

@@ -1,0 +1,103 @@
+$iphone-width: 414px;
+$mobile-width: 640px;
+$mobile-width-max: 736px;
+$tablet-width-min: 768px;
+$tablet-width: 1024px;
+$desktop-width: 1200px;
+$desktop-large: 1920px;
+
+$portrait: "(orientation: portrait)";
+$landscape: "(orientation: landscape)";
+
+@mixin under-smart {
+  @media all and (max-width: #{$tablet-width-min - 1}) {
+    @content;
+  }
+}
+
+@mixin smart {
+  @media all and (max-width: #{$tablet-width-min}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media all and (max-width: #{$mobile-width}), all and (max-width: #{$mobile-width-max}) and #{$landscape} {
+    @content;
+  }
+}
+
+@mixin mobile-landscape {
+  @media all and (max-width: #{$mobile-width-max}) and #{$landscape} {
+    @content;
+  }
+}
+@mixin mobile-portrait {
+  @media all and (max-width: #{$mobile-width-max}) and #{$portrait} {
+    @content;
+  }
+}
+
+@mixin under-tablet {
+  @media all and (min-width: #{$mobile-width + 1}) and (max-width: #{$tablet-width-min - 1}) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media all and (min-width: #{$mobile-width + 1}) and (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media all and (min-width: #{$mobile-width + 1}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$tablet-width + 1}) {
+    @content;
+  }
+}
+
+@mixin desktop-large {
+  @media (min-width: #{$desktop-large + 1}) {
+    @content;
+  }
+}
+
+@mixin ipad-pro {
+  @media only screen and
+  (height: 1024px) and (width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and #{$landscape},
+  (width: 1024px) and (height: 1366px) and (-webkit-min-device-pixel-ratio: 2) and #{$portrait}  {
+    @content;
+  }
+}
+
+@mixin retina {
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+  only screen and (min--moz-device-pixel-ratio: 1.5),
+  only screen and (-o-min-device-pixel-ratio: 3/2),
+  only screen and (min-resolution: 1.5dppx),
+  only screen and (min-resolution: 144dpi) {
+    @content;
+  }
+}
+@mixin retina_icon {
+  @include retina {
+    @content;
+    background-size: 192px;
+  }
+}
+
+@mixin iphonex {
+  @media only screen
+  and (max-width : 812px)
+  and (max-height : 375px)
+  and (-webkit-device-pixel-ratio : 3)
+  and #{$landscape} {
+    @content;
+  }
+}

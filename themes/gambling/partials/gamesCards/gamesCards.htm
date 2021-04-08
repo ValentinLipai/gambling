@@ -1,0 +1,17 @@
+==
+{% set noRecordsMessage = data.noRecordsMessage %}
+
+<div class="games-params-cards">
+    {% if isSlider %}
+    <span class="games-params-cards__slide-highlight"></span>
+    {% endif %}
+    <div class="games-params-cards__container {% if isSlider %}swiper-container{% endif %}">
+        <div class="games-params-cards__list {% if isSlider %}swiper-wrapper{% endif %}">
+        {% for item in data.records %}
+           {% partial 'gamesCards/gamesCardsItem' isSlider=isSlider card=item %}
+        {% else %} 
+            <div class="no-data">{{ noRecordsMessage }}</div>
+        {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="tabs">
+    <div class="tabs__header">
+        <div class="swiper-container">
+            <ul class="swiper-wrapper tabs-nav__list">
+                {% for tab in tabs %}
+                    <li class="swiper-slide tabs-nav__link">{{ tab.title }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="tabs-content__list">
+        {% for tab in tabs %}
+            <div class="tabs-content__item">
+                {{ tab.content }}
+            </div>
+        {% endfor %}
+    </div>
+</div>

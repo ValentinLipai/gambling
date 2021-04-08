@@ -1,0 +1,4 @@
+$vw-base: 1920 !default
+
+@function get-percent($width, $base: $vw-base)
+	@return #{$width / $base * 100%}

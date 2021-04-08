@@ -1,0 +1,38 @@
+[viewBag]
+snippetCode = "subscriptionForm"
+snippetName = "Subscription Form"
+snippetProperties[title][title] = "title"
+snippetProperties[title][type] = "string"
+snippetProperties[title][default] = "Get Information About New Bonuses!"
+snippetProperties[title][options][] = ""
+snippetProperties[subtitle][title] = "subtitle"
+snippetProperties[subtitle][type] = "string"
+snippetProperties[subtitle][default] = "Subscribe To Our Newsletter"
+snippetProperties[subtitle][options][] = ""
+snippetProperties[btnText][title] = "button text"
+snippetProperties[btnText][type] = "string"
+snippetProperties[btnText][default] = "Submit"
+snippetProperties[btnText][options][] = ""
+
+[newsSubscribe]
+==
+<div class="news-subscription">
+    <div class="news-subscription__content">
+        <div class="news-subscription__title">Title</div>
+        <div class="news-subscription__subtitle">Subtitle</div>
+        <form class="news-subscription__form" data-request="onSubscription" data-request-success="alert('{{ text_messages }}');$('#subscriptionForm').trigger('reset');" id="subscriptionForm">
+            <div class="form-group">
+                <input name="name" type="text" class="form__input" id="subscribersName" required>
+            </div>
+        
+            <div class="form-group">
+                <input name="email" type="email" class="form__input" id="subscribersEmail" required>
+            </div>
+        
+            <button type="submit" class="btn btn-secondary">{{ text_button }}</button>
+        </form>
+    </div>
+    <div class="news-subscription__social">
+        {% partial 'site/social-list' %}
+    </div>
+</div>

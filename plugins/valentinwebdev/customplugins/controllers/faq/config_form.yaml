@@ -1,0 +1,10 @@
+name: FAQ
+form: $/valentinwebdev/customplugins/models/faq/fields.yaml
+modelClass: Valentinwebdev\Customplugins\Models\Faq
+defaultRedirect: valentinwebdev/customplugins/faq
+create:
+    redirect: 'valentinwebdev/customplugins/faq/update/:id'
+    redirectClose: valentinwebdev/customplugins/faq
+update:
+    redirect: valentinwebdev/customplugins/faq
+    redirectClose: valentinwebdev/customplugins/faq

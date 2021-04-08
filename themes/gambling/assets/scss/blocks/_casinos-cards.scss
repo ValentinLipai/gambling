@@ -1,0 +1,214 @@
+.casinos-cards {}
+
+.casinos-cards__list {}
+
+.casinos-cards-item {
+    position: relative;
+    display: flex;
+    padding: rem(24);
+    background-color: $black-light;
+    &:not(:last-of-type) {
+        margin-bottom: rem(18);
+    }
+}
+
+.casinos-cards-item__left {
+    flex: 0 0 (62 / 296 * 100%);
+    max-width: (62 / 296 * 100%);
+    margin-right: (16 / 296 * 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.casinos-cards-item__middle {
+    flex: 0 0 (101 / 296 * 100%);
+    max-width: (101 / 296 * 100%);
+    margin-right: (12 / 296 * 100%);
+}
+
+.casinos-cards-item__right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex: 0 0 (116 / 296 * 100%);
+    max-width: (116 / 296 * 100%);
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .link-arrow {
+        text-align: center;
+        display: flex;
+        line-height: 1;
+        color: $accent;
+    }
+}
+
+.casinos-cards-item__logo {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-position: center;
+        object-fit: contain;
+    }
+}
+
+.casinos-cards-item__down {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(16);
+    height: rem(16);
+    color: $white;
+    background: $gradient1;
+    border-radius: 50%;
+    text-decoration: none;
+    i {
+        position: relative;
+        top: 1px;
+        font-size: rem(8);
+    }
+}
+
+.casinos-cards-item-value {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.casinos-cards-item-value__title {
+    font-weight: 300;
+    font-size: rem(14);
+    line-height: 1;
+    color: $gray;
+}
+
+.casinos-cards-item-value__value {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 800;
+    font-size: rem(26);
+    line-height: 1;
+    letter-spacing: 0.0384em;
+    color: $white;
+
+    .spins {
+        font-size: rem(10);
+        text-align: left;
+        text-transform: uppercase;
+        margin-left: rem(5);
+    }
+
+    img {
+        display: inline-block;
+        width: rem(14);
+        height: rem(14);
+        object-position: center;
+        object-fit: contain;
+        margin-left: rem(4);
+    }
+}
+
+.casinos-cards-item-value__type {
+    font-weight: 800;
+    font-size: rem(10);
+    line-height: (12/10);
+}
+
+.casinosCardsItem_second {
+    position: relative;
+    background-color: $black-light;
+    + .casinosCardsItem_second {
+        margin-top: rem(16);
+    }
+}
+
+.casinosCardsItem_second__content {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: rem(16 16 18);
+}
+
+.casinosCardsItem_second__logo {
+    flex: 0 0 rem(50);
+    max-width: rem(50);
+    margin-right: rem(22);
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+.casinosCardsItem_second__meta {
+    flex: 1;
+    max-width: 100%;
+}
+
+.casinosCardsItem_second__title {
+    font-weight: 800;
+    font-size: rem(16);
+    line-height: (20/16);
+    margin-bottom: rem(6);
+}
+
+.casinosCardsItem_second__info {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-top: rem(20);
+    font-weight: 300;
+    strong,
+    b {
+        font-weight: 800;
+    }
+    .casinosCardsItem_second--light & {
+        margin-top: rem(8);
+        strong,
+        b {
+            font-weight: 300;
+        }
+    }
+}
+
+.casinosCardsItem_second__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem(15 16);
+    background-color: $black-light2;
+
+
+    .btn {
+        min-width: rem(132);
+        max-width: 50%;
+    }
+
+    .casinosCardsItem_second--light & {
+        background-color: transparent;
+        padding: 0;
+        margin-top: rem(16);
+        .btn {
+            min-width: rem(102);
+            max-width: unset;
+        }
+    }
+}

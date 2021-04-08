@@ -1,0 +1,42 @@
+fields:
+    title:
+        label: Text
+        size: ''
+        span: auto
+        required: 1
+        type: richeditor
+    bonus_code:
+        label: 'Bonus Code'
+        span: auto
+        default: N/A
+        required: 0
+        type: text
+    bonus_code_text:
+        label: 'Bonus Code Text'
+        span: auto
+        required: 1
+        type: text
+    btn_link:
+        label: 'Button Link'
+        span: auto
+        required: 1
+        type: text
+    btn_text:
+        label: 'Button text'
+        span: auto
+        default: 'Get Bonus'
+        required: 1
+        type: text
+    valid_date:
+        label: 'Valid date'
+        mode: date
+        format: 'M d, Y'
+        span: auto
+        required: 1
+        type: datepicker
+    category:
+        label: Category
+        nameFrom: cat_title
+        descriptionFrom: description
+        span: auto
+        type: relation

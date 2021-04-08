@@ -1,0 +1,20 @@
+plugin:
+    name: 'valentinwebdev.casinos::lang.plugin.name'
+    description: 'valentinwebdev.casinos::lang.plugin.description'
+    author: ValentinWebDev
+    icon: oc-icon-diamond
+    homepage: ''
+navigation:
+    casinos:
+        label: Casinos
+        url: valentinwebdev/casinos/casinos
+        icon: icon-diamond
+        sideMenu:
+            side-menu-item:
+                label: 'valentinwebdev.casinos::lang.plugin.name'
+                url: valentinwebdev/casinos/casinos
+                icon: icon-diamond
+            side-menu-item2:
+                label: Categories
+                url: valentinwebdev/casinos/categories
+                icon: icon-sitemap

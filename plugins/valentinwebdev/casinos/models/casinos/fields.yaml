@@ -1,0 +1,106 @@
+fields:
+    title:
+        label: Title
+        span: left
+        placeholder: Title
+        type: text
+    slug:
+        label: URL
+        span: auto
+        preset:
+            field: title
+            type: slug
+        type: text
+    image:
+        label: Logo
+        mode: image
+        span: auto
+        required: 1
+        type: mediafinder
+tabs:
+    fields:
+        bonus_text:
+            label: 'Bonus Type Text'
+            span: auto
+            required: 1
+            type: text
+            tab: Bonus
+        is_free_coins:
+            label: 'HP Coin image'
+            span: auto
+            default: 1
+            type: switch
+            comment: 'Show coin image on right side of the value'
+            tab: Bonus
+        bonus_value:
+            label: 'Bonus value'
+            span: auto
+            required: 1
+            type: text
+            tab: Bonus
+        bonus_value_right:
+            label: 'Bonus Value right text'
+            size: small
+            span: auto
+            default: free<br>spins
+            type: richeditor
+            tab: Bonus
+        detail_bonus:
+            label: 'Detail Bonus Text'
+            size: small
+            span: auto
+            type: richeditor
+            commentAbove: 'For Category'
+            tab: Bonus
+        category:
+            label: Category
+            nameFrom: cat_title
+            descriptionFrom: description
+            span: auto
+            type: relation
+            tab: Info
+        rating:
+            label: Rating
+            span: auto
+            required: 1
+            type: number
+            tab: Info
+        game_link:
+            label: 'Game link'
+            span: auto
+            placeholder: 'https://google.com'
+            required: 1
+            type: text
+            tab: Info
+        game_link_title:
+            label: 'Game link text'
+            span: auto
+            default: 'Play now'
+            required: 1
+            type: text
+            tab: Info
+        more_link_title:
+            label: 'Read more link text'
+            span: auto
+            default: 'Read more'
+            required: 1
+            type: text
+            tab: Info
+        content:
+            label: Content
+            span: full
+            size: large
+            required: 1
+            type: richeditor
+            tab: Info
+        meta_title:
+            label: 'Meta Title'
+            span: full
+            type: text
+            tab: Meta
+        meta_description:
+            label: 'Meta Description'
+            span: full
+            required: 0
+            type: text
+            tab: Meta

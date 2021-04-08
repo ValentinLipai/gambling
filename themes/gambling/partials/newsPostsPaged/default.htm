@@ -1,0 +1,80 @@
+==
+<?php
+function onEnd() {
+    // get all uniq ids from posts
+    $catsIdsWithPosts = json_decode(DB::table("indikator_news_posts")->select("category_id")->distinct()->get()->toJson(), true);
+
+    $request_ids = [];
+    foreach ($catsIdsWithPosts as $id) {
+        $request_ids[] = $id["category_id"];
+    }
+
+    $cats = json_decode(DB::table("indikator_news_categories")->whereIn("id", $request_ids)->orderBy("name")->get()->toJson(), true);
+    $catsArr = [];
+    foreach ($cats as $cat) {
+        $catsArr[$cat["id"]] = $cat;
+    }
+
+    $this["newsCategories"] = $catsArr;
+}
+?>
+==
+
+{% set posts = __SELF__.posts %}
+
+<div class="cat-posts-cards cat-posts-cards--{{ layoutType == 2 ? "layout2" : "first-and-last" }}">
+        <div class="cat-posts-cards__list">
+        {% for post in posts %}
+            {% set post_cat = post.category_id | json_encode %}
+            {% partial 'postsCards/postsCardsItem' post=post categorySlug=newsCategories[post_cat]["slug"] hideExcerpt=hideExcerpt %}
+        {% else %}
+            <div>{{ __SELF__.noPostsMessage }}</div>
+        {% endfor %}
+    </div>
+</div>
+
+{% if posts.lastPage > 1 %}
+    <div class="pagination">
+        <div class="pagination-btn pagination-btn--prev">
+            {% if posts.currentPage > 1 %}
+                {% set prevPageIndex = posts.currentPage-1 %}
+                <a href="{{ prevPageIndex == 1 ? page.url : '?page=' ~ prevPageIndex }}"><i class="icon-chevron-left"></i> Prev</a>
+            {% endif %}
+        </div>
+        <div class="pagination__pages">
+            {% if posts.currentPage == 1 %}
+                {% set pageFrom = 1 %}
+                {% if posts.lastPage >= 3 %}
+                    {% set pageTo = 3 %}
+                {% else %}
+                    {% set pageTo = posts.lastPage %}
+                {% endif %}
+            {% elseif posts.currentPage == posts.lastPage %}
+                {% if posts.currentPage > 2 %}
+                    {% set pageFrom = (posts.currentPage-2) %}
+                {% else %}
+                    {% set pageFrom = (posts.currentPage-1) %}
+                {% endif %}
+
+                {% set pageTo = posts.currentPage %}
+            {% else %}
+                {% set pageFrom = (posts.currentPage-1) %}
+                {% set pageTo = (posts.currentPage+1) %}
+            {% endif %}
+            {% for pageItem in pageFrom..pageTo %}
+                <li class="pagination-item {{ posts.currentPage == pageItem ? '_active' : null }}">
+                    {% if posts.currentPage == pageItem %}
+                        <span>{{ pageItem }}</span>
+                    {% else %}
+                        <a href="{{ pageItem == 1 ? page.url : '?page=' ~ pageItem }}">{{ pageItem }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </div>
+        <div class="pagination-btn pagination-btn--next">
+            {% if posts.lastPage > posts.currentPage %}
+                <a href="?page={{ posts.currentPage+1}}">Next <i class="icon-chevron-right"></i></a>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}

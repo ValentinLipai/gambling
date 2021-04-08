@@ -1,0 +1,117 @@
+.games-params-cards {
+    position: relative;
+}
+
+.games-params-cards__container {
+    &.swiper-container {
+        margin: rem(0 -20);
+        padding: rem(0 20);
+    }
+}
+
+.games-params-cards__slide-highlight {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(-9%, 30%);
+    width: 100%;
+    padding-bottom: 23.7430168%;
+    background: radial-gradient(50% 50% at 50% 50%, $orange 0%, rgba(233, 140, 0, 0) 100%);
+    filter: blur(rem(20));
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: inline-block;
+    }
+
+    &:before {
+        z-index: 1;
+        width: 100%;
+        padding-bottom: 13.1284916%;
+        background: radial-gradient(50% 50% at 50% 50%, rgba($orange, 0.7) 0%, rgba(204, 128, 14, 0) 100%);
+        filter: blur(rem(30));
+    }
+
+    &:after {
+        z-index: 2;
+        width: 100%;
+        padding-bottom: 6.42458101%;
+        background: radial-gradient(50% 50% at 50% 50%, $orange 0%, rgba(233, 141, 4, 0) 100%);
+        filter: blur(rem(10));
+    }
+}
+
+.games-params-cards__list {}
+
+.games-params-cards-item {
+    position: relative;
+    z-index: 1;
+    &:not(.swiper-slide) {
+        + .games-params-cards-item {
+            margin-top: rem(14);
+        }
+    }
+}
+
+.games-params-cards-item__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(179.81deg, rgba(23, 23, 23, 0) 0.16%, rgba(23, 23, 23, 0.76) 52.57%, rgba(23, 23, 23, 0.96) 81.32%);
+    }
+    img {
+        @include imgBg();
+    }
+}
+
+.games-params-cards-item__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: rem(232);
+    padding: rem(20);
+    color: $white;
+}
+
+.games-params-cards-item__title {
+    font-weight: 800;
+    font-size: rem(26);
+    line-height: 1;
+    letter-spacing: 0.0269230769em;
+    margin-bottom: rem(13);
+}
+
+.games-params-cards-item__params {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-bottom: rem(13);
+    li {
+        font-weight: 300;
+        font-size: rem(12);
+        line-height: 1.2;
+    }
+}
+
+.games-params-cards-item__actions {
+    .btn-primary {
+        padding: rem(2 19);
+    }
+}

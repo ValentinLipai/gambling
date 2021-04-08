@@ -1,0 +1,23 @@
+[staticPage]
+useContent = 1
+default = 1
+==
+{% partial 'site/head' %}
+
+<body>
+
+{% partial 'site/header' %}
+
+    <main class="main">
+        <div class="page-wrapper">
+            <div class="content-box">
+                <div class="content-box__content">
+                    <div class="text-content">
+                        {% page %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+{% partial 'site/footer' %}

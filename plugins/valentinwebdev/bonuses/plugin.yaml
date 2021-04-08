@@ -1,0 +1,20 @@
+plugin:
+    name: 'valentinwebdev.bonuses::lang.plugin.name'
+    description: 'valentinwebdev.bonuses::lang.plugin.description'
+    author: ValentinWebDev
+    icon: oc-icon-briefcase
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: 'valentinwebdev.bonuses::lang.plugin.name'
+        url: valentinwebdev/bonuses/bonuses
+        icon: icon-briefcase
+        sideMenu:
+            side-menu-item-bonuses:
+                label: 'valentinwebdev.bonuses::lang.plugin.name'
+                url: valentinwebdev/bonuses/bonuses
+                icon: icon-briefcase
+            side-menu-item-cats:
+                label: Categories
+                url: valentinwebdev/bonuses/categories
+                icon: icon-sitemap

@@ -1,0 +1,54 @@
+fields:
+    title:
+        label: Title
+        span: auto
+        required: 1
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        required: 1
+        preset:
+            field: title
+            type: slug
+        type: text
+    image:
+        label: Image
+        mode: image
+        span: full
+        type: mediafinder
+    game_link:
+        label: 'Button Link'
+        span: auto
+        placeholder: 'https://google.com'
+        required: 1
+        type: text
+    game_link_title:
+        label: 'Button Title'
+        span: auto
+        default: 'Play now'
+        required: 1
+        type: text
+    params:
+        label: Parameters
+        prompt: 'Add new item'
+        maxItems: '4'
+        span: full
+        type: repeater
+        form:
+            fields:
+                param_title:
+                    label: Title
+                    span: left
+                    required: 1
+                    type: text
+                param_value:
+                    label: Value
+                    span: auto
+                    required: 1
+                    type: text
+    category:
+        label: Category
+        span: auto
+        nameFrom: cat_title
+        type: relation

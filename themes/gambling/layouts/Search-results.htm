@@ -1,0 +1,144 @@
+==
+{% partial 'site/head' %}
+
+<body>
+
+    {% partial 'site/header' %}
+
+    <main class="main">
+        <div class="page-wrapper">
+            <!-- Top Casinos -->
+
+            <div class="content-box">
+                <div class="content-box__title">
+                    <h2>{text label="Block Title" name="block1_title" tab="Block 1"}{/text}</h2>
+                </div>
+                <div class="content-box__content">
+                    {% partial 'casinosCards/casinosCards' data=hpTopCasinos %}
+                </div>
+            </div>
+            
+            <div class="content-box">
+                <div class="content-box__title">
+                    <h2>{text label="Block Title" name="block2_title" tab="Block 2"}{/text}</h2>
+                </div>
+                <div class="content-box__content">
+                    {% partial 'gamesCards/gamesCards' data=hpGamesList isSlider=true %}
+                </div>
+            </div>
+
+            {variable type="mediafinder" mode="image" span="right" label="Background Image" name="block3_bg" tab="Block 3"}{/variable}
+            <div class="content-box _bonusCodes _wide _bg" style="background-image: url({{block3_bg|media}})">
+                <div class="content-box__title">
+                    <h2>{text label="Block Title" span="left" name="block3_title" tab="Block 3"}{/text}</h2>
+                </div>
+                <div class="content-box__content">
+                    {% partial 'bonusCodes/bonusCodes' data=hpBonusesList isSlider=true %}
+                </div>
+            </div>
+
+                <div class="content-box _bonusCodes">
+                <div class="content-box__title">
+                    <h2>{text label="Block Title" name="block4_title" tab="Block 4"}{/text}</h2>
+                </div>
+                <div class="content-box__content">
+                    <div class="tabs">
+                        <div class="tabs__header">
+                            <div class="swiper-container">
+                                <ul class="swiper-wrapper tabs-nav__list">
+                                    {% set catIds = [] %}
+                                    {% if blogCategories.categories|length > 0 %}
+                                    {% set first = true %}
+                                    {% for category in categories %}
+                                    {% set postCount = category.post_count %}
+                                    {% if postCount|length > 0.5 %}
+                                    {% set catIds = catIds|merge([category.id]) %}
+                                    {% if first %}
+                                    {% set first = false %}
+                                    <li class="swiper-slide tabs-nav__link _active">{{category.name}}</li>
+                                    {% else %}
+                                    <li class="swiper-slide tabs-nav__link">{{category.name}}</li>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% else %}
+                                    <p>No categories were found.</p>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tabs-content__list">
+
+                            {% set posts = blogPosts.posts %}
+                            {% set t_first = true %}
+                            {% for catId in catIds %}
+                            <div class="tabs-content__item {% if t_first %}_active{% endif %}">
+                                {% if t_first %}
+                                {% set t_first = false %}
+                                {% endif %}
+                                <div class="cat-posts-cards">
+                                    <div class="cat-posts-cards__list">
+                                        {% set key = 0 %}
+                                        {% for post in posts %}
+                                        {% for cat in post.categories %}
+                                        {% if cat.id == catId %}
+                                        {% partial 'postsCards/postsCardsItem' key=key post=post %}
+                                        {% set key = key + 1 %}
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% else %}
+                                        <li class="no-data">{{ blogPosts.noPostsMessage }}</li>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-box">
+                <div class="content-box__content">
+                    <div class="text-content">
+                        {% content 'hp/hp-text-1' %}
+                    </div>
+                </div>
+            </div>
+
+            {variable type="mediafinder" mode="image" span="auto" label="Background Image" name="block6_bg" tab="Block 6"}{/variable}
+            <div class="content-box _wide _bg content-box--hp-text-2" style="background-image: url({{block6_bg|media}})">
+                <div class="content-box__content">
+                    <div class="text-content">
+                        {% content 'hp/hp-text-2' %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-box">
+                <div class="content-box__title">
+                    <h2>{text label="Block Title" name="block7_title" tab="Block 7"}{/text}</h2>
+                </div>
+                <div class="F">
+                    {% partial 'faq' items=faqHpList.records id=1 %}
+                </div>
+            </div>
+            
+            
+            {% page %}
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="page-wrapper">
+            {% partial 'site/footer' %}
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ 'assets/scripts/app.js'|theme }}"></script>
+    {% framework extras %}
+    {% scripts %}
+
+</body>
+</html>

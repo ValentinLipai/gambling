@@ -1,0 +1,66 @@
+.form {
+
+}
+
+.form-group {
+    + .form-group {
+        margin-top: rem(8);
+    }
+}
+
+.form-group--revert {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.form__input-error {
+    color: $dark-red;
+    text-align: left;
+    padding-left: rem(20);
+    font-weight: 700;
+}
+
+.form input,
+form input,
+input {
+    display: block;
+    width: 100%;
+    height: rem(42);
+    padding: rem(7 19);
+    font-weight: 300;
+    font-size: rem(12);
+    line-height: 1;
+    color: #6C6C6C;
+    border: none;
+    background: $white;
+    border-radius: rem(20);
+    border: 1px solid $white;
+
+    .form__input-error.visible + & {
+        border-color: $dark-red;
+    }
+}
+
+.form textarea,
+form textarea,
+textarea {
+    display: block;
+    width: 100%;
+    padding: rem(12 19);
+    font-weight: 300;
+    font-size: rem(12);
+    line-height: 1;
+    color: #6C6C6C;
+    border: none;
+    background: $white;
+    border-radius: rem(20);
+    border: 1px solid $white;
+
+    .form__input-error.visible + & {
+        border-color: $dark-red;
+    }
+}
+
+button {
+
+}

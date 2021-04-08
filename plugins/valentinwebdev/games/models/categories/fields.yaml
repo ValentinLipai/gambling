@@ -1,0 +1,13 @@
+fields:
+    cat_title:
+        label: Title
+        span: auto
+        required: 1
+        type: text
+    cat_slug:
+        label: Slug
+        span: auto
+        preset:
+            field: cat_title
+            type: slug
+        type: text

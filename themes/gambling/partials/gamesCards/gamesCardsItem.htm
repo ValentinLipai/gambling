@@ -1,0 +1,17 @@
+==
+<div class="games-params-cards-item {% if isSlider %}swiper-slide{% endif %}">
+    <div class="games-params-cards-item__bg">
+        <img src="{{card.image|media}}" alt="{{card.title}}">
+    </div>
+    <div class="games-params-cards-item__content">
+        <div class="games-params-cards-item__title">{{card.title}}</div>
+        <ul class="games-params-cards-item__params">
+            {% for item in card.params %}
+                <li> {{item.param_title}} - <strong>{{item.param_value}}</strong></li>
+            {% endfor %}
+        </ul>
+        <div class="games-params-cards-item__actions">
+            <a href="{{ card.game_link }}" target="_blank" class="btn btn-primary">{{card.game_link_title}}</a>
+        </div>
+    </div>
+</div>

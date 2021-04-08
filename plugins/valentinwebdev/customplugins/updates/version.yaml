@@ -1,0 +1,8 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table valentinwebdev_customplugins_faq'
+    - builder_table_create_valentinwebdev_customplugins_faq.php
+1.0.3:
+    - 'Created table valentinwebdev_customplugins_social'
+    - builder_table_create_valentinwebdev_customplugins_social.php

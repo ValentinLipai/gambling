@@ -1,0 +1,29 @@
+title = "Category page"
+url = "/:slug"
+layout = "news/category"
+is_hidden = 0
+==
+<?php
+function onEnd()
+{
+    $slug = $this->param("slug");
+    $catInfo = Db::select("select * from indikator_news_categories where slug = '$slug'", [1]);
+
+    if (count($catInfo) == 0) {
+        return $this->controller->run('404');
+    }
+
+    $catInfo = $catInfo[0];
+    $this["catInfo"] = $catInfo;
+
+    $this->page->title = $catInfo->name;
+    $this->page->meta_title = $catInfo->meta_title;
+    $this->page->meta_description = $catInfo->meta_description;
+}
+?>
+==
+<div class="content-box">
+    <div class="content-box__content text-content">
+        {{ catInfo.content|raw }}
+    </div>
+</div>

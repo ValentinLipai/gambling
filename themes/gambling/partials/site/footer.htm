@@ -1,0 +1,38 @@
+[viewBag]
+
+[staticMenu]
+code = "footer-nav"
+==
+<footer class="footer">
+        <div class="page-wrapper">
+            <div class="footer__age-limit blurred-bg-text">
+                <span>18+</span>
+                <span class="bg">18+</span>
+            </div>
+            
+            <div class="footer-social">
+                {% partial 'site/social-list' %}
+            </div>
+            
+            <div class="footer-text">
+                {% content 'footer/footer-text' %}
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-nav">
+                    {% component 'staticMenu' %}
+                </div>
+                <div class="footer-copyright">
+                    {% content 'footer/footer-terms' %}
+                </div>
+            </div>
+                        </div>
+        </footer>
+    
+        <!-- Scripts -->
+        <script src="{{ 'assets/scripts/app.js'|theme }}"></script>
+        {% framework extras %}
+        {% scripts %}
+    
+    </body>
+</html>

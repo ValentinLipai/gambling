@@ -1,0 +1,7 @@
+<div class="cat-posts-cards">
+    <div class="cat-posts-cards__list">
+        {% for key, item in items %}
+            {% partial 'postsCards/postsCardsItem' key=key post=item length=items|length %}
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,27 @@
+[builderList BonusesCatsCardsList]
+modelClass = "Valentinwebdev\Bonuses\Models\Categories"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "cat_title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+
+[viewBag]
+==
+{% set noRecordsMessage = data.noRecordsMessage %}
+<div class="bonus-codes-cards">
+    <div class="bonus-codes-cards__container {% if isSlider %}swiper-container{% endif %}">
+        <div class="bonus-codes-cards__list {% if isSlider %}swiper-wrapper{% endif %}">
+            {% for item in data.records %}
+            {% partial 'bonusCodes/bonusCodesItem' isSlider=isSlider cats=BonusesCatsCardsList.records card=item %}
+            {% else %}
+            <div class="no-data">{{ noRecordsMessage }}</div>
+            {% endfor %}
+        </div>
+        {% if isSlider %}
+        <div class="swiper-pagination"></div>
+        {% endif %}
+    </div>
+</div>

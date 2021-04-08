@@ -1,0 +1,83 @@
+[viewBag]
+
+[newsPosts newsPostsPaged]
+pageNumber = "{{ :page }}"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+postFeatured = 0
+postPage = "news/post"
+categoryPage = 404
+==
+<?php
+function onEnd() {
+    // get all uniq ids from posts
+    $catsIdsWithPosts = json_decode(DB::table("indikator_news_posts")->select("category_id")->distinct()->get()->toJson(), true);
+
+    $request_ids = [];
+    foreach ($catsIdsWithPosts as $id) {
+        $request_ids[] = $id["category_id"];
+    }
+
+    $cats = json_decode(DB::table("indikator_news_categories")->whereIn("id", $request_ids)->orderBy("name")->get()->toJson(), true);
+    $catsArr = [];
+    foreach ($cats as $cat) {
+        $catsArr[$cat["id"]] = $cat;
+    }
+
+    $posts = json_decode(DB::table("indikator_news_posts")->orderBy("published_at", "desc")->get()->toJson(), true);
+    $postsArr = [];
+    $counter = 0;
+    foreach ($posts as $post) {
+        $post_cat_id = $post["category_id"];
+        $post["categorySlug"] = $catsArr[$post_cat_id]["slug"];
+        $postsArr[$post_cat_id][] = $post;
+
+        if ($counter < 10) {
+            $counter += 1;
+            $postsArr["full"][] = $post;
+        }
+    }
+
+    $this["newsCategories"] = $catsArr;
+    $this["newsPosts"] = $postsArr;
+}
+?>
+==
+<div class="tabs">
+    <div class="tabs__header">
+        <div class="swiper-container">
+            <ul class="swiper-wrapper tabs-nav__list">
+                {% if newsCategories|length > 0 %}
+                    <li class="swiper-slide tabs-nav__link _active">All</li>
+                    {% for category in newsCategories %}
+                        <li class="swiper-slide tabs-nav__link">{{category.name}}</li>
+                    {% endfor %}
+                {% else %}
+                    <p>No categories were found.</p>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div class="tabs-content__list">
+
+        <div class="tabs-content__item _active">
+            {% component "newsPostsPaged" layoutType=layoutType %}
+        </div>
+        
+        {% for newsCatItem in newsCategories %}
+            <div class="tabs-content__item">
+                <div class="cat-posts-cards cat-posts-cards--{{ layoutType == 2 ? "layout2" : "first-and-last" }}">
+                    <div class="cat-posts-cards__list">
+                        {% set catId = newsCatItem.id|json_encode %}
+                        {% for post in newsPosts[catId] %}
+                            {% partial 'postsCards/postsCardsItem' post=post %}
+                        {% else %}
+                            <li class="no-data">{{ blogPosts.noPostsMessage }}</li>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,28 @@
+.news-post {
+  position: relative;
+}
+
+.news-post-content {}
+
+.news-post-title {
+  margin-bottom: rem(20);
+}
+
+.news-post-date {
+  text-decoration: underline;
+  line-height: 1.2;
+  margin-bottom: rem(20);
+}
+
+.news-post-image {
+  margin: rem(0 -20 20);
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.news-post-introductory {
+  font-weight: 500;
+}

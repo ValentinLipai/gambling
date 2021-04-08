@@ -1,0 +1,16 @@
+{% if __SELF__.menuItems %}
+<div class="mobile-nav">
+    <div class="mobile-nav__content">
+        <div class="page-wrapper">
+            <div class="mobile-nav__actions">
+                <button class="mobile-nav__btn"><i class="icon-hamburger"></i></button>
+            </div>
+            <nav class="mobile-nav__nav">
+                <ul class="mobile-nav__list">
+                    {% partial __SELF__ ~ "::items" items=__SELF__.menuItems %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+{% endif %}

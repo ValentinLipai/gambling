@@ -1,0 +1,27 @@
+==
+function onStart() {
+    $list = json_decode($this['items'], true);
+    $faq = null;
+    foreach ( $list as $item  ) {
+        if ( $item['id'] === $this['id'] ) {
+            $faq = $item;
+        }
+    }
+
+    if ( is_null($faq) ) {
+        $this['faq'] = false;
+    } else {
+        $temp = [];
+        foreach ( $faq['content'] as $item  ) {
+            $temp[] = [
+                "title" => $item['item_title'],
+                "text" => $item['item_text']
+            ];
+        }
+        $this['faq'] = $temp;
+    }
+}
+==
+<div class="faq">
+    {% partial 'accordion' items=faq %}
+</div>

@@ -1,0 +1,63 @@
+==
+<?php
+    use October\Rain\Argon\Argon;
+
+    function onStart()
+    {
+        $post = $this->post;
+        $published_at = $post['published_at'];
+
+        if (is_string($published_at)) {
+            $p_date_obj = Argon::createFromFormat('Y-m-d H:i:s', $published_at);
+            $this['post_p_at'] = $p_date_obj;
+        } else {
+            $this['post_p_at'] = $post['published_at'];
+        }
+
+    }
+?>
+==
+
+
+<article class="posts-cards-item">
+    <div class="posts-cards-item__image">
+        <img src="{{ post.image|media }}" alt="{{ post.title }}">
+    </div>
+    <div class="posts-cards-item__content">
+        {% if post.tags %}
+            {% if not post.tags[0] == ""  %}
+                <div class="posts-cards-item__tags">
+                    {% for tag in post.tags %}
+                        <span>{{tag}}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endif %}
+        <div class="posts-cards-item__bottom">
+            <h1 class="posts-cards-item__title">
+                {% set postCatSlug = categorySlug ? categorySlug : post.categorySlug%}
+                <a href="/{{ postCatSlug }}/{{post.slug}}">{{post.title}}</a>
+            </h1>
+            {% if not hideExcerpt %}
+                {% if post.introductory %}<div class="posts-cards-item__introductory">{{ post.introductory|raw }}</div>{% endif %}
+            {% endif %}
+            <a href="/{{ postCatSlug }}/{{post.slug}}" class="link-arrow btn btn-secondary posts-cards-item__more">Read more</a>
+            <div class="posts-cards-item__meta">
+                <span class="posts-cards-item__posted">
+                    <i class="icon-clock"></i>
+                    {{ post_p_at.diffForHumans }}
+                </span>
+                <span class="posts-cards-item__params">
+                    <span class="posts-cards-item__comments">
+                        <i class="icon-comment"></i>
+                        0
+                    </span>
+                    <span class="posts-cards-item__views">
+                        <i class="icon-eye"></i>
+                        {{ post.statistics }}
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+</article>

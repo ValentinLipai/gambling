@@ -1,0 +1,48 @@
+.tabs {
+    position: relative;
+}
+
+.tabs__header {
+    margin-bottom: rem(18);
+}
+
+.tabs-nav__list {}
+
+.tabs-nav__link {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    padding: rem(0 0 10 0);
+    font-weight: 800;
+    font-size: rem(14);
+    line-height: (16/14);
+    letter-spacing: 0.05em;
+    color: $gray2;
+    cursor: pointer;
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: none;
+        width: 100%;
+        height: rem(2);
+        background-color: $white;
+        border-radius: rem(50);
+    }
+    &._active {
+        color: $white;
+        &:after {
+            display: block;
+        }
+    }
+}
+
+.tabs-content__list {}
+
+.tabs-content__item {
+    display: none;
+    &._active {
+        display: block;
+    }
+}

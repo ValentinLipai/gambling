@@ -1,0 +1,23 @@
+==
+{% set items = data.records %}
+{% set noRecordsMessage = data.noRecordsMessage %}
+{% set detailsPage = data.detailsPage %}
+{% set detailsKeyColumn = data.detailsKeyColumn %}
+{% set detailsUrlParameter = data.detailsUrlParameter %}
+
+<div class="casinos-cards">
+    <div class="casinos-cards__list">
+        {% for item in items %}
+            {% set detailPageUrl = detailsPage|page({ (detailsUrlParameter): attribute(item, detailsKeyColumn) }) %}
+            {% if layout == 2 %}
+                {% partial 'casinosCards/casinosCardsItem_second' card=item url=detailPageUrl %}
+            {% elseif layout == 3 %}
+                {% partial 'casinosCards/casinosCardsItem_third' card=item url=detailPageUrl %}
+            {% else %}
+                {% partial 'casinosCards/casinosCardsItem' card=item url=detailPageUrl %}
+            {% endif %}
+        {% else %}
+            <div class="no-data">{{ noRecordsMessage }}</div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,201 @@
+title = "Best Casino Ratings And Reviews in UK"
+url = "/casinos/:page?"
+layout = "main/main-category"
+is_hidden = 0
+
+[builderList casinosListFull]
+modelClass = "Valentinwebdev\Casinos\Models\Casinos"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "casinos/casinosDetail"
+detailsKeyColumn = "slug"
+detailsUrlParameter = ":slug"
+pageNumber = "{{ :page }}"
+
+[builderList casinosList]
+modelClass = "Valentinwebdev\Casinos\Models\Casinos"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "casinos/casinosDetail"
+detailsKeyColumn = "slug"
+detailsUrlParameter = ":slug"
+recordsPerPage = 6
+pageNumber = "{{ :page }}"
+
+[builderList casinosCategories]
+modelClass = "Valentinwebdev\Casinos\Models\Categories"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "cat_title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+sortColumn = "cat_title"
+sortDirection = "asc"
+
+[builderList casinosCatFaq]
+modelClass = "Valentinwebdev\Customplugins\Models\Faq"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+
+[commentsPost]
+
+[SiteSettings]
+==
+
+<style>
+    .content-box._customCategory {
+        background-image: url({{ SiteSettings.get('casinos_bg') | media }});
+        background-position: top center;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+</style>
+<div class="content-box _wide-category _customCategory">
+    <div class="content-box__title">
+        <h2>{{this.page.title}}</h2>
+    </div>
+    <div class="content-box__content">
+        <div class="tabs">
+            <div class="tabs__header">
+                <div class="swiper-container">
+                    <ul class="swiper-wrapper tabs-nav__list">
+
+                        {% set catsList = casinosCategories.records %}
+                        {% set catsListNoRecordsMessage = casinosCategories.noRecordsMessage %}
+
+                        <li class="swiper-slide tabs-nav__link _active">{{ SiteSettings.get('all_tab_title') }}</li>
+
+                        {% set catIds = [] %}
+                        {% for category in catsList %}
+                            {% set catIds = catIds|merge([category.id]) %}
+                            <li class="swiper-slide tabs-nav__link">{{category.cat_title}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="tabs-content__list">
+                <div class="tabs-content__item _active">
+                    {% set casinosItems = casinosList.records %}
+                    {% set displayColumn = casinosList.displayColumn %}
+                    {% set casinosNoRecordsMessage = casinosList.noRecordsMessage %}
+                    {% set casinosDetailsPage = casinosList.detailsPage %}
+                    {% set casinosDetailsKeyColumn = casinosList.detailsKeyColumn %}
+                    {% set casinosDetailsUrlParameter = casinosList.detailsUrlParameter %}
+
+                    {% partial 'casinosCards/casinosCards' data=casinosList layout=2 %}
+
+                    {% if casinosItems.lastPage > 1 %}
+                    <div class="pagination">
+                        <div class="pagination-btn pagination-btn--prev">
+                            {% if casinosItems.currentPage > 1 %}
+                                <a href="{{ this.page.baseFileName|page({ (pageParam): (casinosItems.currentPage-1) }) }}"><i class="icon-chevron-left"></i> {{ SiteSettings.get('prev_btn_text') }}</a>
+                            {% endif %}
+                        </div>
+                        <div class="pagination__pages">
+                            {% if casinosItems.currentPage == 1 %}
+                                {% set pageFrom = 1 %}
+                                {% if casinosItems.lastPage >= 3 %}
+                                    {% set pageTo = 3 %}
+                                {% else %}
+                                    {% set pageTo = casinosItems.lastPage %}
+                                {% endif %}
+                            {% elseif casinosItems.currentPage == casinosItems.lastPage %}
+                                {% if casinosItems.currentPage > 2 %}
+                                    {% set pageFrom = (casinosItems.currentPage-2) %}
+                                {% else %}
+                                    {% set pageFrom = (casinosItems.currentPage-1) %}
+                                {% endif %}
+
+                                {% set pageTo = casinosItems.currentPage %}
+                            {% else %}
+                                {% set pageFrom = (casinosItems.currentPage-1) %}
+                                {% set pageTo = (casinosItems.currentPage+1) %}
+                            {% endif %}
+
+                            {% for page in pageFrom..pageTo %}
+                                <li class="pagination-item {{ casinosItems.currentPage == page ? '_active' : null }}">
+                                    {% if casinosItems.currentPage == page %}
+                                        <span>{{ page }}</span>
+                                    {% else %}
+                                        <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </div>
+                        <div class="pagination-btn pagination-btn--next">
+                            {% if casinosItems.lastPage > casinosItems.currentPage %}
+                                <a href="{{ this.page.baseFileName|page({ (pageParam): (casinosItems.currentPage+1) }) }}">{{ SiteSettings.get('next_btn_text') }} <i class="icon-chevron-right"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% set casinosListFullItems = casinosListFull.records %}
+
+                {% for catItem in catIds %}
+                    <div class="tabs-content__item">
+                        {% set counter = 0 %}
+                        {% set collection = [] %}
+
+                        {% for item in casinosListFullItems %}
+                            {% if item.category_id == catItem %}
+                                {% set collection = collection|merge([item]) %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if counter|length > 0.5 %}
+                            {% set dataItems = {
+                                'records': collection,
+                                'detailsPage': casinosDetailsPage,
+                                'noRecordsMessage': casinosNoRecordsMessage,
+                                'detailsKeyColumn': casinosDetailsKeyColumn,
+                                'detailsUrlParameter': casinosDetailsUrlParameter
+                            } %}
+                            {% partial 'casinosCards/casinosCards' data=dataItems layout=2 %}
+                        {% else %}
+                            <div>{{ SiteSettings.get('no_items_text') }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-box">
+    <div class="content-box__content">
+        <div class="text-content">
+            {{ SiteSettings.get('casinos_content_1') | raw }}
+        </div>
+    </div>
+</div>
+
+<div class="content-box">
+    <div class="content-box__title">
+        <h2>{{ SiteSettings.get('casinos_faq_title') }}</h2>
+    </div>
+    <div class="content-box__content">
+        {% partial 'faq' items=casinosCatFaq.records id=2 %}
+    </div>
+</div>
+
+<div class="content-box">
+    <div class="content-box__content">
+        <div class="text-content">
+            {{ SiteSettings.get('casinos_content_2') | raw }}
+        </div>
+    </div>
+</div>

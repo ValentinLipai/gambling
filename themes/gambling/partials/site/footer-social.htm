@@ -1,0 +1,22 @@
+[builderList footerSocialList]
+modelClass = "Valentinwebdev\Customplugins\Models\Social"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "id"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+noRecordsMessage = items.noRecordsMessage
+==
+<div class="footer-social">
+    <div class="social-list">
+        {% for item in footerSocialList.records %}
+            <a href="{{item.link}}" class="social-list-item">
+                <i class="icon-{{item.icon_class}}"></i>
+            </a>
+        {% else %}
+            <div>{{noRecordsMessage}}</div>
+        {% endfor %}
+    </div>
+</div>

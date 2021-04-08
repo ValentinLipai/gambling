@@ -1,0 +1,36 @@
+[viewBag]
+[SiteSettings]
+==
+<!-- casinos-cards-item start -->
+<div class="casinos-cards-item">
+    <div class="casinos-cards-item__left">
+        <div class="casinos-cards-item__logo">
+            <img src="{{ card.image|media }}" alt="">
+        </div>
+        {% partial 'ratingStars' customClass="casinos-cards-item__rating" rating=card.rating %}
+    </div>
+    <div class="casinos-cards-item__middle">
+        <div class="casinos-cards-item-value">
+            <div class="casinos-cards-item-value__title">{{ SiteSettings.get('casino_card_bonus_title') }}:</div>
+            <div class="casinos-cards-item-value__value">
+                <span>
+                    {{ card.bonus_value }}
+                </span>
+                {% if card.is_free_coins %}
+                    <img src="{{ 'assets/img/coin.svg'|theme }}" alt="">
+                {% else %}
+                    <span class="spins">
+                        {{ card.bonus_value_right|raw }}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="casinos-cards-item-value__type">{{ card.bonus_text }}</div>
+        </div>
+    </div>
+    <div class="casinos-cards-item__right">
+        <a href="{{ card.game_link }}" target="_blank" class="btn btn-primary">{{ card.game_link_title }}</a>
+        <a href="{{ url }}" class="link-arrow">{{ card.more_link_title }}</a>
+    </div>
+    <a href="#" class="casinos-cards-item__down"><i class="icon-chevron-down"></i></a>
+</div>
+<!-- casinos-cards-item end -->

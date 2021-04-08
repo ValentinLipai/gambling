@@ -1,0 +1,8 @@
+@function rem($values)
+	$max: length($values)
+	@if $max == 1 
+		@return #{$values / 10}rem
+	$remValues: ()
+	@for $i from 1 through $max 
+		$remValues: append($remValues, #{nth($values, $i) / 10}rem)
+	@return $remValues

@@ -1,0 +1,22 @@
+{% set posts = __SELF__.posts %}
+
+<div class="content-box leaveAReply" id="comments-content">
+    <div class="content-box__title">
+        <h2>Leave a Reply
+            <small><a onclick="Comment.cancel()" style="display: none;" rel="nofollow" id="cancel-comment-reply-link"
+                      title="Cancel reply">×</a>
+            </small>
+        </h2>
+    </div>
+    <div class="content-box__content" id="wrap-comment-form">
+        <div class="leaveAReply-comments">
+            {% partial "leaveAReply::list" posts=posts %}
+        </div>
+        {% if(user or __SELF__.settings.allow_guest) %}
+
+            {% partial "leaveAReply::form" %}
+
+        {% endif %}
+    </div>
+</div>
+

@@ -1,0 +1,47 @@
+[SiteSettings]
+
+[builderList topCasinos]
+modelClass = "Valentinwebdev\Casinos\Models\Casinos"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "slug"
+noRecordsMessage = "No records found"
+detailsPage = "casinos/casinosDetail"
+detailsKeyColumn = "slug"
+detailsUrlParameter = ":slug"
+recordsPerPage = 4
+pageNumber = "{{ :page }}"
+sortColumn = "rating"
+sortDirection = "desc"
+
+[viewBag]
+==
+<div class="content-box">
+    <div class="content-box__title">
+        <h2>Recent Comments</h2>
+    </div>
+    <div class="content-box__content">
+        {% partial 'recent-comments/recentList' %}
+    </div>
+</div>
+<div class="content-box">
+    <div class="content-box__content">
+        {% partial 'news-subscribe/form.htm' %}
+    </div>
+</div>
+<div class="content-box">
+    <div class="content-box__title">
+        <h2>Recent News</h2>
+    </div>
+    <div class="content-box__content">
+        {% partial 'recent-posts/recentList2' %}
+    </div>
+</div>
+<div class="content-box">
+    <div class="content-box__title">
+        <h2>Top Rated Casino In Your Country</h2>
+    </div>
+    <div class="content-box__content">
+        {% partial 'casinosCards/casinosCards' layout=2 data=topCasinos %}
+    </div>
+</div>

@@ -1,0 +1,27 @@
+[commentsPost leaveAReply]
+==
+{% partial 'site/head' %}
+
+<body>
+{% partial 'site/header' %}
+
+<main class="main">
+
+    {% partial 'site/top-search' %}
+
+    <div class="page-wrapper">
+        <div class="content-box">
+            <div class="content-box__content">
+                <div class="text-content">
+                    {% page %}
+                </div>
+            </div>
+        </div>
+            
+        {% component 'leaveAReply' %}
+        
+        {% partial 'infoPagesWidgets' %}
+    </div>
+</main>
+    
+{% partial 'site/footer' %}

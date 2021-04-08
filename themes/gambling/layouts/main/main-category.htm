@@ -1,0 +1,15 @@
+description = "Main category layout"
+==
+{% partial 'site/head' %}
+
+    <body>
+
+    {% partial 'site/header' %}
+
+    <main class="main">
+        <div class="page-wrapper">
+            {% page %}
+        </div>
+    </main>
+    
+{% partial 'site/footer' %}

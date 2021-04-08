@@ -1,0 +1,10 @@
+name: Categories
+form: $/valentinwebdev/bonuses/models/categories/fields.yaml
+modelClass: Valentinwebdev\Bonuses\Models\Categories
+defaultRedirect: valentinwebdev/bonuses/categories
+create:
+    redirect: 'valentinwebdev/bonuses/categories/update/:id'
+    redirectClose: valentinwebdev/bonuses/categories
+update:
+    redirect: valentinwebdev/bonuses/categories
+    redirectClose: valentinwebdev/bonuses/categories

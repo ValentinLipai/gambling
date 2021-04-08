@@ -1,0 +1,19 @@
+[SiteSettings]
+==
+<div class="bonus-codes-cards-item {% if isSlider %}swiper-slide{% endif %}">
+    <div class="bonus-codes-cards-item__bg" style="background-color: {{cats[card.category_id-1].card_bg_clr}}"></div>
+    <div class="bonus-codes-cards-item__accent-text">{{cats[card.category_id-1].cat_title}}</div>
+    <div class="bonus-codes-cards-item__title">{{card.title|raw}}</div>
+    <div class="bonus-codes-cards-item__code">
+        <span class="title">{{ SiteSettings.get('bonus_card_title') }}</span>
+        <span class="value">{{card.bonus_code}}</span>
+    </div>
+    <div class="bonus-codes-cards-item__description">{{card.bonus_code_text}}</div>
+    <div class="bonus-codes-cards-item__bottom">
+        <a href="{{card.btn_link }}" target="_blank" class="btn btn-primary">{{card.btn_text}}</a>
+        <div class="bonus-codes-cards-item__valid">
+            <span>{{ SiteSettings.get('bonus_card_valid_text') }}:</span>
+            <strong class="value">{{card.valid_date|date('M d, Y')}}</strong>
+        </div>
+    </div>
+</div>

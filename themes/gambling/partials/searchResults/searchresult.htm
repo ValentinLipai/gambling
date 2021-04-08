@@ -1,0 +1,10 @@
+<div class="search-result-item">
+    {% if result.thumb %}
+        <div class="search-result-item__image">
+            {% partial __SELF__ ~ '::thumbnail' result = result %}
+        </div>
+    {% endif %}
+    <div class="search-result-item__content text-content">
+        {% partial __SELF__ ~ '::content' result = result %}
+    </div>
+</div>

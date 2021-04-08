@@ -1,0 +1,10 @@
+name: Games
+form: $/valentinwebdev/games/models/games/fields.yaml
+modelClass: Valentinwebdev\Games\Models\Games
+defaultRedirect: valentinwebdev/games/games
+create:
+    redirect: 'valentinwebdev/games/games/update/:id'
+    redirectClose: valentinwebdev/games/games
+update:
+    redirect: valentinwebdev/games/games
+    redirectClose: valentinwebdev/games/games

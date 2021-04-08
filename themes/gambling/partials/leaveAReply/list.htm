@@ -1,0 +1,27 @@
+<ul class="leaveAReply-comments__list">
+    {% for post in posts %}
+    <li class="leaveAReply-comments-item" id="comment-{{post.id}}">
+        <div class="leaveAReply-comments-item-info">
+            <div class="leaveAReply-comments-item__top">
+                <div class="leaveAReply-comments-item__name">{{post.name}}</div>
+                <div class="leaveAReply-comments-item__time">
+                    <a class="leaveAReply-comments-item__date-link" href="#comment-{{post.id}}">
+                        {{post.created_at.diffForHumans}}
+                    </a>
+                </div>
+            </div>
+            <div class="leaveAReply-comments-item__bottom">
+                <div class="leaveAReply-comments-item__content">
+                    {{post.content|raw}}
+                </div>
+            </div>
+        </div>
+
+        {% if post.children %}
+        <div class="leaveAReply-comments-item__replied">
+            {% partial "commentsPost::list" posts=post.children %}
+        </div>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>

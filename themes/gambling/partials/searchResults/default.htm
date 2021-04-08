@@ -1,0 +1,13 @@
+{% set results = __SELF__.results %}
+
+<div class="search-results">
+    <div class="search-results__content">
+        {% for result in results %}
+            {# Display all results #}
+            {% partial __SELF__ ~ '::searchresult.htm' result = result %}
+        {% else %}
+            {# No results found #}
+            {% partial __SELF__ ~ '::no-results.htm' %}
+        {% endfor %}
+    </div>
+</div>

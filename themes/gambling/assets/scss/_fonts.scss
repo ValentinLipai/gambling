@@ -1,0 +1,16 @@
+@import "_mixins/font-face";
+
+$fonts-folder: "../fonts";
+
+@include font-face("Oswald", "#{$fonts-folder}/Oswald/Oswald-Regular", 400);
+@include font-face("Gilroy", "#{$fonts-folder}/Gilroy/Gilroy-Light", 300);
+@include font-face("Gilroy", "#{$fonts-folder}/Gilroy/Gilroy-Regular", 400);
+@include font-face("Gilroy", "#{$fonts-folder}/Gilroy/Gilroy-Medium", 500);
+@include font-face("Gilroy", "#{$fonts-folder}/Gilroy/Gilroy-SemiBold", 600);
+@include font-face("Gilroy", "#{$fonts-folder}/Gilroy/Gilroy-Boltext-contentd", 700);
+@include font-face("Gilroy", "#{$fonts-folder}/Gilroy/Gilroy-ExtraBold", 800);
+@include font-face("Gilroy", "#{$fonts-folder}/Gilroy/Gilroy-Black", 900);
+
+@import "icons/variables";
+$icomoon-font-path: "#{$fonts-folder}/#{$icomoon-font-family}";
+@import "icons/style";

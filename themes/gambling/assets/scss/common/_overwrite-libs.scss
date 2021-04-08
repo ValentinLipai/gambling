@@ -1,0 +1,18 @@
+.swiper-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .swiper-pagination-bullet {
+        width: rem(4);
+        height: rem(4);
+        border-radius: 50%;
+        background-color: rgba($white, 0.26);
+        margin: rem(0 3);
+        &.swiper-pagination-bullet-active {
+            width: rem(6);
+            height: rem(6);
+            background-color: $purple;
+            box-shadow: rem(0 4 10) rgba(182, 49, 206, 0.4);
+        }
+    }
+}

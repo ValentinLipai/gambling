@@ -1,0 +1,167 @@
+title = "Games Casino And Welcome Packages"
+url = "/games/:page?"
+layout = "main/main-category"
+is_hidden = 0
+
+[builderList gamesListFull]
+modelClass = "Valentinwebdev\Games\Models\Games"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+
+[builderList gamesList]
+modelClass = "Valentinwebdev\Games\Models\Games"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+recordsPerPage = 6
+pageNumber = "{{ :page }}"
+
+[builderList gamesCategories]
+modelClass = "Valentinwebdev\Games\Models\Categories"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "cat_title"
+noRecordsMessage = "No records found"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+sortColumn = "cat_title"
+sortDirection = "asc"
+
+[builderList gamesCatFaq]
+modelClass = "Valentinwebdev\Customplugins\Models\Faq"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+
+[commentsPost]
+
+[SiteSettings]
+==
+
+<style>
+    .content-box._customCategory {
+        background-image: url({{ SiteSettings.get('games_bg') | media }});
+        background-position: top center;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+</style>
+<div class="content-box _wide-category _customCategory">
+    <div class="content-box__title">
+        <h2>{{this.page.title}}</h2>
+    </div>
+    <div class="content-box__content">
+        <div class="tabs">
+            <div class="tabs__header">
+                <div class="swiper-container">
+                    <ul class="swiper-wrapper tabs-nav__list">
+                        {% set gamesCatsList = gamesCategories.records %}
+
+                        <li class="swiper-slide tabs-nav__link _active">{{ SiteSettings.get('all_tab_title') }}</li>
+
+                        {% set catIds = [] %}
+                        {% for category in gamesCatsList %}
+                            {% set catIds = catIds|merge([category.id]) %}
+                            <li class="swiper-slide tabs-nav__link">{{category.cat_title}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="tabs-content__list">
+                <div class="tabs-content__item _active">
+                    {% set gamesItems = gamesList.records %}
+                    {% set displayColumn = gamesList.displayColumn %}
+                    {% set casinosNoRecordsMessage = gamesList.noRecordsMessage %}
+                    {% partial 'gamesCards/gamesCards' data=gamesList %}
+
+                    {% if gamesItems.lastPage > 1 %}
+                    <div class="pagination">
+                        <div class="pagination-btn pagination-btn--prev">
+                            {% if gamesItems.currentPage > 1 %}
+                                <a href="{{ this.page.baseFileName|page({ (pageParam): (gamesItems.currentPage-1) }) }}"><i class="icon-chevron-left"></i> {{ SiteSettings.get('prev_btn_text') }}</a>
+                            {% endif %}
+                        </div>
+                        <div class="pagination__pages">
+                            {% if gamesItems.currentPage == 1 %}
+                                {% set pageFrom = 1 %}
+                                {% if gamesItems.lastPage >= 3 %}
+                                    {% set pageTo = 3 %}
+                                {% else %}
+                                    {% set pageTo = gamesItems.lastPage %}
+                                {% endif %}
+                            {% elseif gamesItems.currentPage == gamesItems.lastPage %}
+                                {% if gamesItems.currentPage > 2 %}
+                                    {% set pageFrom = (gamesItems.currentPage-2) %}
+                                {% else %}
+                                    {% set pageFrom = (gamesItems.currentPage-1) %}
+                                {% endif %}
+
+                                {% set pageTo = gamesItems.currentPage %}
+                            {% else %}
+                                {% set pageFrom = (gamesItems.currentPage-1) %}
+                                {% set pageTo = (gamesItems.currentPage+1) %}
+                            {% endif %}
+
+                            {% for page in pageFrom..pageTo %}
+                                <li class="pagination-item {{ gamesItems.currentPage == page ? '_active' : null }}">
+                                    {% if gamesItems.currentPage == page %}
+                                        <span>{{ page }}</span>
+                                    {% else %}
+                                        <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </div>
+                        <div class="pagination-btn pagination-btn--next">
+                            {% if gamesItems.lastPage > gamesItems.currentPage %}
+                                <a href="{{ this.page.baseFileName|page({ (pageParam): (gamesItems.currentPage+1) }) }}">{{ SiteSettings.get('next_btn_text') }} <i class="icon-chevron-right"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% set gamesListFullItems = gamesListFull.records %}
+
+                {% for catItem in catIds %}
+                    <div class="tabs-content__item">
+                        {% set counter = 0 %}
+                        {% set collection = [] %}
+
+                        {% for item in gamesListFullItems %}
+                            {% if item.category_id == catItem %}
+                                {% set collection = collection|merge([item]) %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if collection|length > 0.5 %}
+                            {% set collectionsItems = {
+                                'records': collection
+                            } %}
+                            {% partial 'gamesCards/gamesCards' data=collectionsItems %}
+                        {% else %}
+                            <div>{{ SiteSettings.get('no_items_text') }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-box">
+    <div class="content-box__content">
+        <div class="text-content">
+            {{ SiteSettings.get('games_content_1') | raw }}
+        </div>
+    </div>
+</div>

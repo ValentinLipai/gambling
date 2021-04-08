@@ -1,0 +1,14 @@
+.stars {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    i {
+        font-size: rem(10);
+        background: $gradient1;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        &:not(:last-of-type) {
+            margin-right: rem(3);
+        }
+    }
+}
